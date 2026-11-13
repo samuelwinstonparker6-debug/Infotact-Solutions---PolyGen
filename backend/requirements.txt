@@ -1,0 +1,24 @@
+# PolyGen Week 1 — GPU-Accelerated Text-to-3D & Mesh API Dependencies
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+pydantic>=2.7.0
+python-dotenv>=1.0.1
+
+# 3D Geometry & Mesh Export (.obj)
+numpy>=1.26.0
+trimesh>=4.4.0
+
+# PyTorch (install CUDA 12.1+ wheel for NVIDIA GPU acceleration)
+# pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+torch>=2.2.0
+
+# Optional Week 1 Neural Text-to-3D Backends (when running on CUDA GPU):
+# diffusers>=0.29.0
+# transformers>=4.41.0
+# accelerate>=0.30.0
+# git+https://github.com/openai/shap-e.git
+# git+https://github.com/VAST-AI-Research/TripoSR.git
+
+pytest>=8.0.0
+httpx>=0.27.0
+
