@@ -3,16 +3,17 @@ import {
   Box,
   Cpu,
   Download,
+  FileCheck,
   Grid3X3,
   Loader2,
   Mic,
   RotateCw,
   Sparkles,
   Type,
-  Radio,
 } from 'lucide-react'
 import ObjViewer from './components/ObjViewer'
 import VoiceCopilot from './components/VoiceCopilot'
+import MidProjectAudit from './components/MidProjectAudit'
 
 const SAMPLE_PROMPTS = [
   'A rusted, medieval broadsword with a glowing blue sapphire in the hilt',
@@ -24,7 +25,7 @@ const SAMPLE_PROMPTS = [
 ]
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('voice') // 'voice' | 'text'
+  const [activeTab, setActiveTab] = useState('voice') // 'voice' | 'text' | 'audit'
   const [prompt, setPrompt] = useState(SAMPLE_PROMPTS[0])
   const [generating, setGenerating] = useState(false)
   const [error, setError] = useState('')
@@ -89,16 +90,16 @@ export default function App() {
           </div>
           <div>
             <h1>PolyGen</h1>
-            <span>Week 1 & 2 • Text-to-3D • Silero VAD • Llama 3</span>
+            <span>Week 1, 2 & Mid-Project Review</span>
           </div>
         </div>
 
-        {/* Tab Selector: Voice Copilot vs Text Mode */}
+        {/* Tab Selector: Voice Copilot vs Text Mode vs Mid-Project Audit */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '0.4rem',
+            gridTemplateColumns: '1fr 1fr 1.2fr',
+            gap: '0.35rem',
             background: 'var(--surface-2)',
             padding: '0.3rem',
             borderRadius: '10px',
@@ -109,17 +110,25 @@ export default function App() {
             type="button"
             onClick={() => setActiveTab('voice')}
             className={`tool-btn ${activeTab === 'voice' ? 'active' : ''}`}
-            style={{ justifyContent: 'center', width: '100%' }}
+            style={{ justifyContent: 'center', width: '100%', padding: '0.35rem 0.4rem', fontSize: '0.74rem' }}
           >
-            <Mic size={14} /> Voice Copilot
+            <Mic size={13} /> Voice
           </button>
           <button
             type="button"
             onClick={() => setActiveTab('text')}
             className={`tool-btn ${activeTab === 'text' ? 'active' : ''}`}
-            style={{ justifyContent: 'center', width: '100%' }}
+            style={{ justifyContent: 'center', width: '100%', padding: '0.35rem 0.4rem', fontSize: '0.74rem' }}
           >
-            <Type size={14} /> Text Input
+            <Type size={13} /> Text
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveTab('audit')}
+            className={`tool-btn ${activeTab === 'audit' ? 'active' : ''}`}
+            style={{ justifyContent: 'center', width: '100%', padding: '0.35rem 0.4rem', fontSize: '0.74rem' }}
+          >
+            <FileCheck size={13} /> Review Audit
           </button>
         </div>
 
@@ -194,17 +203,22 @@ export default function App() {
           </>
         )}
 
+        {/* Tab 3: Mid-Project Review Audit */}
+        {activeTab === 'audit' && <MidProjectAudit />}
+
         {/* Generated Assets History */}
         <div className="panel" style={{ flex: 1 }}>
           <div
             style={{
-              fontSize: '0.75rem',
-              fontWeight: 600,
-              color: 'var(--muted)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
               marginBottom: '0.6rem',
             }}
           >
-            GENERATED .OBJ HISTORY ({history.length})
+            <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--muted)' }}>
+              GENERATED .OBJ HISTORY ({history.length})
+            </span>
           </div>
           {history.length === 0 ? (
             <p style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>

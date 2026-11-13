@@ -490,3 +490,4 @@ export default function VoiceCopilot({ onAssetGenerated, onSelectPrompt, isGener
     </div>
   )
 }
+

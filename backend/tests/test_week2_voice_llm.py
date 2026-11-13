@@ -181,3 +181,4 @@ def test_api_voice_pipeline_end_to_end(client):
     assert data["asset"]["obj_filename"].endswith(".obj")
     assert data["asset"]["vertex_count"] > 0
     assert data["asset"]["face_count"] > 0
+

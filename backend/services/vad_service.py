@@ -179,3 +179,4 @@ class SileroVADDetector:
         self.last_speech_time = None
         self.silence_accumulated_ms = 0.0
         self.total_speech_duration_ms = 0.0
+
