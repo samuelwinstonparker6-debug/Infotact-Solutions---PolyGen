@@ -1,9 +1,11 @@
+import math
 import pytest
 from backend.services.vad_service import SileroVADDetector
 
 def test_vad_short_click_filtering():
     vad = SileroVADDetector(threshold=0.5, min_speech_duration_ms=250, min_silence_duration_ms=600)
-    click_audio = [0.4] * 800  # 50ms click
+    # 50ms voiced audio burst
+    click_audio = [0.4 * math.sin(2 * math.pi * 320.0 * (i / 16000.0)) for i in range(800)]
     res = vad.process_chunk(click_audio, chunk_duration_ms=50.0)
     assert res["is_speech"] is True
     # Click followed by silence should not trigger AI reply because speech was under 250ms
