@@ -199,3 +199,4 @@ class ContinuousSpeechAuditor:
         wer = float(d[len(r)][len(h)]) / max(len(r), 1)
         accuracy = max(0.0, (1.0 - wer) * 100.0)
         return round(wer, 4), round(accuracy, 2)
+
